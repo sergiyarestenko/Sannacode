@@ -1,5 +1,3 @@
-
-
 (function () {
     var testButton = document.querySelectorAll('.click-true');
     for (var i = 0,max = testButton.length; i < max; i ++){
@@ -7,8 +5,6 @@
     }
     document.querySelector('#esc').addEventListener('click',escFunc);
     document.querySelector('#back').addEventListener('click',backFunc);
-
-
 })();
 
 function addEventList(el){
@@ -45,13 +41,10 @@ function showResurtCalc(res){
 }
 function calculator(expression){
     var arr = [];
-
-
     if(leadUpArr()){
         findNum();
         findBrackets();
     }
-
     function leadUpArr(){
         expression = expression.replace(/\s/g,'');
         for (var i = 0; i < expression.length; i ++){
@@ -80,7 +73,9 @@ function calculator(expression){
     }
 
     function findBrackets(){
+
         if(checkBrackets()){
+
             var a = false,
                 b = false;
             for(var i = 0; i < arr.length; i ++){
@@ -90,16 +85,16 @@ function calculator(expression){
                 if(arr[i] == ')'){
                     b = i;
                 }
-                if(a&&b){
+                if(a===0&&b||a&&b){
                     return cutBrackets(a,b);
                 }
             }
             lastCalc(arr);
         }else{
+
             showResurtCalc(false);
         }
     }
-
 
     function checkBrackets(){ //проверка, что все скобкм на месте
         var a = 0,
@@ -116,14 +111,13 @@ function calculator(expression){
                 b++;
             }
         }
+
         if(a == b && f){
             return true;
         }else{
             return false;
         }
     }
-
-
     function checkFirstSign(arr){//первый знак не может быть умоножением или делением
         if(!isNaN(arr[0])){
             return arr;
@@ -140,14 +134,12 @@ function calculator(expression){
             return false;
         }
     }
-
-
     function cutBrackets(start, end){
+
         var temp = [];
         for (var i = start+1; i < end; i ++ ){
             temp.push(arr[i])
         }
-
         temp = checkFirstSign(temp);
 
         if(!temp){
@@ -159,6 +151,7 @@ function calculator(expression){
             calc(temp);
             arr[start] = temp[0];
             arr.splice(start+1,end-start);
+;
             findBrackets();
         }
     }
