@@ -1,66 +1,68 @@
 
 body{
   display: flex;
-
 }
 div{
   display: flex;
 }
 .wrapper{
-
   margin: auto;
   padding: 50px 15px;
   background: #9E9E9E;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px rgba(150, 148, 153, 0.62);
 }
 .container{
   margin: auto;
-
-  max-width: 400px;
+  max-width: 300px;
   padding:15px 0;
   width: 90%;
   flex-direction: column;
-
   >div{
     font-size:18px;
     align-items:center;
     input{
-      width: 80%;
+      box-sizing: border-box;
+      width: 90%;
       height: 25px;
       line-height: 25px;
+      padding: 15px 10px;
       &.wrong{
         border: 1px solid red;
       }
-    }
-    p{
-      font-size:14px;
-      width: 20%;
-
-
     }
     margin: 5px;
     flex-direction: row;
     justify-content:center;
 
 
-    button,span{
-      width: 40px;
+    button{
+      width: 50px;
       height: 25px;
-      margin:0 10px;
+      margin:0 5px;
       color: white;
       border: 0;
+    }
+    span{
+      width: 25px;
     }
 
     button{
       background: #5F7C8A;
       border-radius: 5px;
       align-items:center;
-      transition: .5s;
+      transition: .25s;
       cursor: pointer;
       &.red{
         background: #E81E62;
+        &:hover{
+          opacity: .85;
+
+        }
       }
       &:hover{
         opacity: .65;
+        box-shadow: 0 0 3px rgb(206, 220, 224);
       }
     }
   }

@@ -1,11 +1,15 @@
 (function () {
     var testButton = document.querySelectorAll('.click-true');
-    for (var i = 0,max = testButton.length; i < max; i ++){
-        addEventList(testButton[i]);
+      for (var i = 0,max = testButton.length; i < max; i ++){        addEventList(testButton[i]);
     }
     document.querySelector('#esc').addEventListener('click',escFunc);
     document.querySelector('#back').addEventListener('click',backFunc);
+    document.addEventListener('keydown', onKeydown);
 })();
+
+function onKeydown() {
+    document.querySelector('#in').focus();
+}
 
 function addEventList(el){
     el.addEventListener('click',clickButton);
@@ -49,8 +53,12 @@ function calculator(expression){
         expression = expression.replace(/\s/g,'');
         for (var i = 0; i < expression.length; i ++){
             if(isNaN(+expression[i])){
-                if(expression[i] == '('|| expression[i] == ')'|| expression[i] == '*'||expression[i] == '/'|| expression[i] == '+'|| expression[i] == '-'){
-                    arr.push(expression[i]);
+                if(expression[i] == '('|| expression[i] == ')'|| expression[i] == '*'||expression[i] == '/'|| expression[i] == '+'|| expression[i] == '-'|| expression[i] == '.'|| expression[i] == ','){
+                    if(expression[i] == ','){
+                        arr.push('.');
+                    }else{
+                        arr.push(expression[i]);
+                    }
                 }else{
                     showResurtCalc(false);
                     return false;
@@ -64,7 +72,7 @@ function calculator(expression){
     function findNum(){
         for(var i = 0; i < arr.length; i ++){
 
-            if(!isNaN(arr[i]) && !isNaN(arr[i+1])){
+            if(!isNaN(arr[i]) && !isNaN(arr[i+1])||!isNaN(arr[i]) && (arr[i+1]) == '.'){
                 arr[i] = arr[i].toString() + arr[i+1].toString();
                 arr.splice(i+1, 1);
                 findNum();
